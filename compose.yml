@@ -95,3 +95,18 @@ services:
       - "6650:6650"
       - "8080:8080"
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf && exec bin/pulsar broker"
+
+  prometheus:
+    image: prometheus_custom:latest
+    # image: prom/prometheus:latest
+    networks:
+      - pulsar
+    ports:
+      - "9090:9090"
+    volumes:
+    # must be absolute path
+      - /Users/grantthomas/desktop/ymlFolder/prometheus.yml:/etc/prometheus/prometheus.yml
+      # - /Users/cyruxlam/Desktop/prometheus.yml:/etc/prometheus/prometheus.yml
+      # - ./prometheus.yml:etc/prometheus/prometheus.yml
+      # - /Users/alicia/downloads/prometheus.yml:/etc/prometheus/prometheus.yml
+      # - C:\Users\jz_31\Desktop\prometheus.yml/etc/prometheus/prometheus.yml

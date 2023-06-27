@@ -10,13 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/pulsar-prototype-labs/demo.git"
   },
-  "author": "Grant Thomas",
+  "author": "Grant, Anthony, Cyrux,",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pulsar-prototype-labs/demo/issues"
   },
   "homepage": "https://github.com/pulsar-prototype-labs/demo#readme",
   "dependencies": {
-    "pulsar-client": "^1.8.2"
+    "pulsar-client": "^1.8.2",
+    "ws": "^8.13.0"
   }
 }
