@@ -95,6 +95,13 @@ services:
       - "6650:6650"
       - "8080:8080"
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf && exec bin/pulsar broker"
+  
+  myapp:
+    image: testingdummyapp:latest
+    container_name: mydummyapp
+    ports:
+      - "4000:4000"
+
 
   prometheus:
   # image: prometheus_custom:latest

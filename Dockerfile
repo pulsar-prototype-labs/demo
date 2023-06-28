@@ -5,7 +5,7 @@
 
 
 # Use an official Node.js runtime as a parent image
-FROM node
+FROM node:19-alpine
 # Set the working directory to /app
 WORKDIR /app
 
