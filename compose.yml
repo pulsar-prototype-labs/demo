@@ -114,12 +114,8 @@ services:
   #   #   - alertmanager:alertmanager
   #   # depends_on:
   #   #   - cadvisor
-  grafana:
-    image: grafana/grafana-enterprise
-    container_name: grafana
-    restart: unless-stopped
-    ports:
-      - '3000:3000'
+
+
   prometheus:
     image: prometheus_custom:latest
     # image: prom/prometheus:latest
