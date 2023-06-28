@@ -1,3 +1,5 @@
 /data/
 /node_modules/
 /prometheus/
+# /imageConfigs/grafana/data
+/imageConfigs/prometheus/promData
