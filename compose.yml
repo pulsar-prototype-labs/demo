@@ -96,6 +96,30 @@ services:
       - "8080:8080"
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf && exec bin/pulsar broker"
 
+  # prometheus:
+  #   image: prom/prometheus
+  #   restart: always
+  #   volumes:
+  #     - ./prometheus:/etc/prometheus/
+  #     # - prometheus_data:/prometheus
+  #   # command:
+  #     # - '--config.file=/etc/prometheus/prometheus.yml'
+  #     # - '--storage.tsdb.path=/prometheus'
+  #     # - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+  #     # - '--web.console.templates=/usr/share/prometheus/consoles'
+  #   ports:
+  #     - 9090:9090
+  #   # links:
+  #   #   - cadvisor:cadvisor
+  #   #   - alertmanager:alertmanager
+  #   # depends_on:
+  #   #   - cadvisor
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
   prometheus:
     image: prometheus_custom:latest
     # image: prom/prometheus:latest
@@ -106,7 +130,7 @@ services:
     volumes:
     # must be absolute path
       - /Users/grantthomas/desktop/ymlFolder/prometheus.yml:/etc/prometheus/prometheus.yml
-      # - /Users/cyruxlam/Desktop/prometheus.yml:/etc/prometheus/prometheus.yml
-      # - ./prometheus.yml:etc/prometheus/prometheus.yml
-      # - /Users/alicia/downloads/prometheus.yml:/etc/prometheus/prometheus.yml
-      # - C:\Users\jz_31\Desktop\prometheus.yml/etc/prometheus/prometheus.yml
+  #     # - /Users/cyruxlam/Desktop/prometheus.yml:/etc/prometheus/prometheus.yml
+  #     # - ./prometheus.yml:etc/prometheus/prometheus.yml
+  #     # - /Users/alicia/downloads/prometheus.yml:/etc/prometheus/prometheus.yml
+  #     # - C:\Users\jz_31\Desktop\prometheus.yml/etc/prometheus/prometheus.yml

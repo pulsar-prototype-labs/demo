@@ -41,4 +41,4 @@ const produceMessage = async () => {
 
 setInterval(() => {
     produceMessage();
-}, 1000);
+}, 100);
