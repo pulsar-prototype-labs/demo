@@ -20,7 +20,7 @@ services:
              bin/generate-zookeeper-config.sh conf/zookeeper.conf && \
              exec bin/pulsar zookeeper"
     healthcheck:
-      test: ["CMD", "bin/pulsar-zookeeper-ruok.sh"]
+      test: ['CMD', 'bin/pulsar-zookeeper-ruok.sh']
       interval: 10s
       timeout: 5s
       retries: 30
@@ -92,37 +92,36 @@ services:
       bookie:
         condition: service_started
     ports:
-      - "6650:6650"
-      - "8080:8080"
+      - '6650:6650'
+      - '8080:8080'
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf && exec bin/pulsar broker"
-  
+
   myapp:
-    image: testingdummyapp:latest
+    image: dummyapp:latest
     container_name: mydummyapp
     ports:
-      - "4000:4000"
-
+      - '4000:4000'
 
   prometheus:
-  # image: prometheus_custom:latest
+    # image: prometheus_custom:latest
     # image: prom/prometheus:latest
     image: pulsarproto:latest
     container_name: prometheus
-  # image: prom/prometheus:latest
+    # image: prom/prometheus:latest
     networks:
       - pulsar
     ports:
-      - "9090:9090"
+      - '9090:9090'
     # volumes:
     # - ./imageConfigs/prometheus/promData:/prometheus
-      # - ./imageConfigs/prometheus:etc/prometheus
-    
+    # - ./imageConfigs/prometheus:etc/prometheus
+
     volumes:
       # - .imageConfigs/prometheus/config:/etc/prometheus
       - ./imageConfigs/prometheus/promData:/prometheus
       # - .imageConfigs/prometheus/:/var/prometheus/
       # - prometheus_data:/prometheus
-    # command: 
+    # command:
     # - --config.file=/etc/prometheus/prometheus.yml
 
   # labels:
@@ -130,16 +129,11 @@ services:
   #   org_prometheus_starter_port: '9090'
   #   org_prometheus_starter_path: '/metrics'
 
-
-
-
-
-
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       GF_PATHS_CONFIG: /etc/grafana/grafana.ini
       GF_AUTH_ANONYMOUS_ENABLED: 'true'
@@ -150,10 +144,6 @@ services:
     depends_on:
       - prometheus
 
-
-
-    
-    
   # prometheus:
   #   image: prom/prometheus
   #   restart: always
@@ -197,8 +187,8 @@ services:
   #     org_prometheus_starter: 'true'
   #     org_prometheus_starter_port: '9090'
   #     org_prometheus_starter_path: '/metrics'
-    # must be absolute path
-      # - /Users/grantthomas/desktop/ymlFolder/prometheus.yml:/etc/prometheus/prometheus.yml
+  # must be absolute path
+  # - /Users/grantthomas/desktop/ymlFolder/prometheus.yml:/etc/prometheus/prometheus.yml
   #     # - /Users/cyruxlam/Desktop/prometheus.yml:/etc/prometheus/prometheus.yml
   #     # - ./prometheus.yml:etc/prometheus/prometheus.yml
   #     # - /Users/alicia/downloads/prometheus.yml:/etc/prometheus/prometheus.yml
