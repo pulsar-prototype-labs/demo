@@ -96,6 +96,57 @@ services:
       - "8080:8080"
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf && exec bin/pulsar broker"
 
+  prometheus:
+  # image: prometheus_custom:latest
+    # image: prom/prometheus:latest
+    image: pulsarproto:latest
+    container_name: prometheus
+  # image: prom/prometheus:latest
+    networks:
+      - pulsar
+    ports:
+      - "9090:9090"
+    # volumes:
+    # - ./imageConfigs/prometheus/promData:/prometheus
+      # - ./imageConfigs/prometheus:etc/prometheus
+    
+    volumes:
+      # - .imageConfigs/prometheus/config:/etc/prometheus
+      - ./imageConfigs/prometheus/promData:/prometheus
+      # - .imageConfigs/prometheus/:/var/prometheus/
+      # - prometheus_data:/prometheus
+    # command: 
+    # - --config.file=/etc/prometheus/prometheus.yml
+
+  # labels:
+  #   org_prometheus_starter: 'true'
+  #   org_prometheus_starter_port: '9090'
+  #   org_prometheus_starter_path: '/metrics'
+
+
+
+
+
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_PATHS_CONFIG: /etc/grafana/grafana.ini
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+
+    volumes:
+      - ./imageConfigs/grafana/grafana.ini:/etc/grafana/grafana.ini
+
+    depends_on:
+      - prometheus
+
+
+
+    
+    
   # prometheus:
   #   image: prom/prometheus
   #   restart: always
@@ -115,17 +166,32 @@ services:
   #   # depends_on:
   #   #   - cadvisor
 
+  # grafana:
+  #   image: grafana/grafana-enterprise
+  #   container_name: grafana
+  #   restart: unless-stopped
+  #   environment:
+  #     - GF_AUTH_ANONYMOUS_ENABLED=true
+  #   ports:
+  #     - '3000:3000'
 
-  prometheus:
-    image: prometheus_custom:latest
-    # image: prom/prometheus:latest
-    networks:
-      - pulsar
-    ports:
-      - "9090:9090"
-    volumes:
+  # prometheus:
+  #   # image: prometheus_custom:latest
+  #   image: prom/prometheus:latest
+  #   container_name: prometheus
+  #   # image: prom/prometheus:latest
+  #   networks:
+  #     - pulsar
+  #   ports:
+  #     - "9090:9090"
+  #   volumes:
+  #       - ./imageConfigs/prometheus/promData:/prometheus
+  #   labels:
+  #     org_prometheus_starter: 'true'
+  #     org_prometheus_starter_port: '9090'
+  #     org_prometheus_starter_path: '/metrics'
     # must be absolute path
-      - /Users/grantthomas/desktop/ymlFolder/prometheus.yml:/etc/prometheus/prometheus.yml
+      # - /Users/grantthomas/desktop/ymlFolder/prometheus.yml:/etc/prometheus/prometheus.yml
   #     # - /Users/cyruxlam/Desktop/prometheus.yml:/etc/prometheus/prometheus.yml
   #     # - ./prometheus.yml:etc/prometheus/prometheus.yml
   #     # - /Users/alicia/downloads/prometheus.yml:/etc/prometheus/prometheus.yml

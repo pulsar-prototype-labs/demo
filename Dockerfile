@@ -2,3 +2,34 @@
 
 # # Add in the configuration file from the local directory.
 # ADD /Users/grantthomas/desktop/ymlFolder/prometheus.yml:/etc/prometheus/prometheus.yml
+
+
+# Use an official Node.js runtime as a parent image
+FROM node
+# Set the working directory to /app
+WORKDIR /app
+
+# Set the PATH env variable
+# ENV PATH="/usr/local/bin:${PATH}"
+# COPY /usr/local/bin/docker /usr/local/bin/docker
+# changed to most recent version!
+# ENV DOCKERVERSION=20.10.23 
+
+# RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz \
+#   && tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 -C /usr/local/bin docker/docker \
+#   && rm docker-${DOCKERVERSION}.tgz
+
+# COPY package*.json ./
+COPY package.json /app/
+COPY index.html /app/
+COPY server /app/
+# Run npm install to install app dependencies
+RUN npm install
+
+# Copy the current directory contents into the container at /app
+# COPY . .
+# Make port 4000 available to the world outside this container
+EXPOSE 4000
+
+# Start the app
+# CMD ["npm", "start"]
