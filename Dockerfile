@@ -20,9 +20,11 @@ WORKDIR /app
 #   && rm docker-${DOCKERVERSION}.tgz
 
 # COPY package*.json ./
-COPY package.json /app/
-COPY index.html /app/
-COPY server /app/
+COPY server ./server
+COPY index.html .
+COPY package.json .
+
+
 # Run npm install to install app dependencies
 RUN npm install
 
@@ -32,4 +34,6 @@ RUN npm install
 EXPOSE 4000
 
 # Start the app
-# CMD ["npm", "start"]
+CMD ["node", "server/server.js"]
+
+
