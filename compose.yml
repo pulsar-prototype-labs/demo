@@ -149,6 +149,7 @@ services:
     volumes:
       - ./imageConfigs/grafana/data:/var/lib/grafana
       - ./imageConfigs/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./imageConfigs/grafana/provisioning/anotherdash:/etc/grafana/provisioning/anotherdash
       - ./imageConfigs/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - ./imageConfigs/grafana/grafana.ini:/etc/grafana/grafana.ini
       # - ./imageConfigs/grafana/plugins:/var/lib/grafana/plugins
