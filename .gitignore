@@ -3,3 +3,5 @@
 /prometheus/
 /imageConfigs/grafana/data
 /imageConfigs/prometheus/promData
+oggrafdata/
+imageConfigs/grafana/data/grafana.db
