@@ -1,0 +1,61 @@
+{
+  "datasource": {
+    "type": "prometheus",
+    "uid": "PBFA97CFB590B2093"
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": []
+  },
+  "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 0
+  },
+  "id": 1,
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": ["lastNotNull"],
+      "fields": ""
+    },
+    "orientation": "auto",
+    "showThresholdLabels": false,
+    "showThresholdMarkers": true
+  },
+  "pluginVersion": "10.0.1",
+  "targets": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "editorMode": "builder",
+      "expr": "pulsar_lb_cpu_usage",
+      "instant": false,
+      "range": true,
+      "refId": "A"
+    }
+  ],
+  "title": "Panel Title",
+  "type": "gauge"
+}
