@@ -12,7 +12,7 @@ const produceMessage = async () => {
   });
 
   // Send messages
-  for (let i = 0; i < 10; i += 1) {
+  for (let i = 0; i < 1; i += 1) {
     const msg = `my-message-${i}`;
     producer.send({
       data: Buffer.from(msg),
@@ -20,18 +20,16 @@ const produceMessage = async () => {
     console.log(`Sent message: ${msg}`);
   }
 
-
   // Interveral
-//   let count = 0;
-//   const interval = setInterval(() => {
-//     const msg = `my-message-${count}`;
-//     producer.send({
-//       data: Buffer.from(msg),
-//     });
-//     console.log(`Sent message: ${msg}`);
-//     count++;
-//   }, 1000)
-
+  //   let count = 0;
+  //   const interval = setInterval(() => {
+  //     const msg = `my-message-${count}`;
+  //     producer.send({
+  //       data: Buffer.from(msg),
+  //     });
+  //     console.log(`Sent message: ${msg}`);
+  //     count++;
+  //   }, 1000)
 
   await producer.flush();
 
@@ -40,5 +38,5 @@ const produceMessage = async () => {
 };
 
 setInterval(() => {
-    produceMessage();
+  produceMessage();
 }, 100);
