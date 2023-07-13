@@ -106,7 +106,8 @@ services:
   prometheus:
   # image: prometheus_custom:latest
     # image: prom/prometheus:latest
-    image: pulsarproto:latest
+    # image: grantcthomas/pulsarproto:latest
+    image: pulsarproto
     container_name: prometheus
   # image: prom/prometheus:latest
     networks:
@@ -141,7 +142,7 @@ services:
     networks:
       - pulsar
     ports:
-      - "3000:3000"
+      - "2222:3000"
     environment:
       GF_PATHS_CONFIG: /etc/grafana/grafana.ini
       GF_AUTH_ANONYMOUS_ENABLED: 'true'
